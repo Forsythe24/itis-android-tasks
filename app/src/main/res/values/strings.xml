@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">itis-android-tasks</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="type_in_request">Please, type in the text you want to pass between the screens</string>
+    <string name="to_screen_3">to Screen 3</string>
+    <string name="save">save</string>
+    <string name="to_screen_1">to Screen 1</string>
+    <string name="screen_2">Screen 2</string>
+    <string name="screen_3">Screen 3</string>
+    <string name="text_is_changeable_info">You can change this text by typing it in on the Screen 1 and pressing the "save" button.</string>
 </resources>
