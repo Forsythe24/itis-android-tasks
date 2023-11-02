@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.framgents.StartFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/start_page_header"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/number_of_friends_message"
+        android:gravity="center"
+        android:layout_marginBottom="35dp"/>
+
+    <EditText
+        android:layout_marginBottom="10dp"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="20dp"
+        android:inputType="number"
+        android:id="@+id/et_number_of_friends"
+        android:gravity="center"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_to_friends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_friends"
+        android:layout_gravity="center"
+        android:layout_marginTop="130dp"
+        android:textAllCaps="true"
+        app:cornerRadius="5dp"/>
+
+
+
+</FrameLayout>
