@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">itis-android-tasks</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="start_page_header">F.R.I.E.N.D.S</string>
+    <string name="number_of_friends_message">Please, type in the number of friends (1 – 45)</string>
+    <string name="btn_friends">FRIENDS</string>
+    <string name="bottom_sheet">BOTTOM SHEET</string>
+    <string name="date">02-11-2023</string>
+    <string name="add">ADD</string>
 </resources>
