@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_root_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/coroutineSettingsFragment"
+        android:name="com.itis.itis_android_tasks.CoroutineSettingsFragment"
+        android:label="CoroutineSettingsFragment" />
+    <fragment
+        android:id="@+id/notificationSettingsFragment"
+        android:name="com.itis.itis_android_tasks.NotificationSettingsFragment"
+        android:label="NotificationSettingsFragment" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.itis.itis_android_tasks.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
+</navigation>

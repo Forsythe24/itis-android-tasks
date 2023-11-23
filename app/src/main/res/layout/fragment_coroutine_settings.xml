@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/coroutine_settings_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notification_settings"
+        android:textAllCaps="true"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/number_of_coroutines_tv"
+        app:layout_constraintTop_toBottomOf="@id/coroutine_settings_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/number_of_coroutines"
+        android:textAllCaps="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:textSize="15sp" />
+
+    <SeekBar
+        android:min="1"
+        android:id="@+id/number_of_coroutines_sb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/number_of_coroutines_tv"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"
+        android:max="10"
+        >
+    </SeekBar>
+
+
+
+
+    <TextView
+        android:id="@+id/async_tv"
+        app:layout_constraintTop_toBottomOf="@id/number_of_coroutines_sb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/asynchrony"
+        android:textAllCaps="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:textSize="15sp" />
+
+    <CheckBox
+        android:id="@+id/async_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enabled"
+        app:layout_constraintTop_toBottomOf="@id/async_tv"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/stop_on_background_tv"
+        app:layout_constraintTop_toBottomOf="@id/async_cb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stop_on_background"
+        android:textAllCaps="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:textSize="15sp" />
+
+    <CheckBox
+        android:id="@+id/stop_on_background_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enabled"
+        app:layout_constraintTop_toBottomOf="@id/stop_on_background_tv"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="10dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/launch_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/stop_on_background_cb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/launch"
+        android:textAllCaps="true"
+        android:layout_marginTop="100dp"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

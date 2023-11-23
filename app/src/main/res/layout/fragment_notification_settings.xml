@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/notification_settings_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notification_settings"
+        android:textAllCaps="true"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/importance_tv"
+        app:layout_constraintTop_toBottomOf="@id/notification_settings_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/importance"
+        android:textAllCaps="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:textSize="15sp" />
+
+
+    <RadioGroup
+        android:id="@+id/importance_rg"
+        app:layout_constraintTop_toTopOf="@id/importance_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        >
+        <RadioButton
+            android:id="@+id/first_importance_rb"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/medium"/>
+        <RadioButton
+            android:id="@+id/second_importance_rb"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/high"/>
+        <RadioButton
+            android:id="@+id/third_importance_rb"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/urgent"/>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/privacy_tv"
+        app:layout_constraintTop_toBottomOf="@id/importance_rg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/privacy"
+        android:textAllCaps="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:textSize="15sp" />
+
+
+    <RadioGroup
+        android:id="@+id/privacy_rg"
+        app:layout_constraintTop_toTopOf="@id/privacy_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        >
+        <RadioButton
+            android:id="@+id/first_privacy_rb"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/public_type"/>
+        <RadioButton
+            android:id="@+id/second_privacy_rb"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/private_type"/>
+        <RadioButton
+            android:id="@+id/third_privacy_rb"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/secret_type"/>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/see_more_feature_tv"
+        app:layout_constraintTop_toBottomOf="@id/privacy_rg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/see_more_feature"
+        android:textAllCaps="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:textSize="15sp" />
+
+    <CheckBox
+        android:id="@+id/see_more_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enabled"
+        app:layout_constraintTop_toTopOf="@id/see_more_feature_tv"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/app_launching_features_tv"
+        app:layout_constraintTop_toBottomOf="@id/see_more_cb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_launching_features"
+        android:textAllCaps="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:textSize="15sp" />
+
+    <CheckBox
+        android:id="@+id/app_launching_features_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enabled"
+        app:layout_constraintTop_toTopOf="@id/app_launching_features_tv"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="10dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

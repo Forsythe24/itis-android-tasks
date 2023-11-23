@@ -1,3 +1,38 @@
 <resources>
     <string name="app_name">itis-android-tasks</string>
+    <string name="main_screen">Main Screen</string>
+    <string name="coroutine_settings">Coroutine Settings</string>
+    <string name="notification_settings">Notification Settings</string>
+    <string name="title">TITLE</string>
+    <string name="text">TEXT</string>
+    <string name="notify">NOTIFY</string>
+    <string name="importance">importance</string>
+    <string name="urgent">Urgent</string>
+    <string name="high">High</string>
+    <string name="medium">Medium</string>
+    <string name="privacy">privacy</string>
+    <string name="public_type">Public</string>
+    <string name="private_type">Private</string>
+    <string name="secret_type">Secret</string>
+    <string name="see_more_feature">\"see more\" option</string>
+    <string name="enabled">Enabled</string>
+    <string name="app_launching_features">app launching features</string>
+    <string name="number_of_coroutines">number of coroutines</string>
+    <string name="asynchrony">asynchrony</string>
+    <string name="stop_on_background">stop on background</string>
+    <string name="launch">launch</string>
+    <string name="permission_denined_desc">
+        You\'ve now declined our request to post notifications 2 times or more. Please, reconsider granting
+        us this permission in App Settings as it is vital to a proper app functioning.
+    </string>
+    <string name="got_it">GOT IT!</string>
+    <string name="first_notification_channel_id">first_notification_channel</string>
+    <string name="main_notification_channel_name">Main notification channel</string>
+    <string name="toast">Toast</string>
+    <string name="settings">Settings</string>
+    <string name="coroutines_title">Coroutines</string>
+    <string name="all_done_text">All done!</string>
+    <string name="coroutines_killed">Coroutines killed: %1d</string>
+    <string name="no_network_access_warning">No network access</string>
+    <string name="app_settings">App Settings</string>
 </resources>
