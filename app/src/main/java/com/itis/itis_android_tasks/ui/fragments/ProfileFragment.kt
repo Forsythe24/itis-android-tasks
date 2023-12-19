@@ -62,6 +62,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
 
             logoutBtn.setOnClickListener {
+                val pref = ServiceLocator.getSharedPreferences()
+
+                pref.edit()
+                    .remove(ParamsKey.IS_AUTHORIZED)
+                    .apply()
+
                 findNavController().navigate(R.id.action_profileFragment_to_authorizationFragment)
             }
 
@@ -110,6 +116,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 ServiceLocator.getDbInstance().apply {
                     userDao.deleteUserById(userId)
                     userBookDao.deleteAllUserFavorites(userId)
+
+                    val pref = ServiceLocator.getSharedPreferences()
+
+                    pref.edit()
+                        .remove(ParamsKey.IS_AUTHORIZED)
+                        .apply()
                 }
 
                 withContext(Dispatchers.Main) {
