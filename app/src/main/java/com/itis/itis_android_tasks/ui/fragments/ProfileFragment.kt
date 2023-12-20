@@ -193,7 +193,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         dialog.setCancelable(true)
 
         dialog.setContentView(R.layout.user_info_setting_dialog)
-
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         dialog.show()
