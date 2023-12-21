@@ -53,4 +53,5 @@
     <string name="cancel_btn">cancel</string>
     <string name="delete_account">delete account</string>
     <string name="rate">rate</string>
+    <string name="sort_books_by"><b>Sort books by:</b></string>
 </resources>

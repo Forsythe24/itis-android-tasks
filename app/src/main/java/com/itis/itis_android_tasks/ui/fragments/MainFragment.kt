@@ -7,9 +7,12 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.Window
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,7 +34,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MainFragment : Fragment(R.layout.fragment_main) {
+class MainFragment : Fragment(R.layout.fragment_main), AdapterView.OnItemSelectedListener {
 
     private val viewBinding: FragmentMainBinding by viewBinding(FragmentMainBinding::bind)
 
@@ -44,17 +47,60 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private var allBooksAdapter: BookAdapter? = null
 
     private var favoritesAdapter: BookAdapter? = null
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+        // An item is selected. You can retrieve the selected item using
+          when (pos) {
+              0 -> {
+                  sortByPublicationYearDescending(bookItems)
+                  allBooksAdapter!!.setItems(bookItems)
+              }
+
+              1 -> {
+                  sortByPublicationYearAscending(bookItems)
+                  allBooksAdapter!!.setItems(bookItems)
+              }
+
+              2 -> {
+                  bookItems.sortByDescending { book ->
+                      book.rating
+                  }
+                  allBooksAdapter!!.setItems(bookItems)
+              }
+
+              3 -> {
+                  bookItems.sortBy { book ->
+                      book.rating
+                  }
+                  allBooksAdapter!!.setItems(bookItems)
+              }
+         }
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>) {
     }
 
     private fun init() {
         with (viewBinding) {
             userId = requireArguments().getString(ParamsKey.USER_ID_KEY)!!
 
-            val allBooksLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+            ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.sort_types_array,
+                android.R.layout.simple_spinner_item
+            ).also { 
+                arrayAdapter ->
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                bookSortSpinner.adapter = arrayAdapter
+            }
+
+            bookSortSpinner.onItemSelectedListener = this@MainFragment
+
+            val allBooksLayoutManager = GridLayoutManager(requireContext(), 2)
             val favoritesLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
             val offset = 4.getValueInPx(resources.displayMetrics)
@@ -83,8 +129,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                         }
                     } as MutableList<Book>
 
-                    sortByPublicationYear(bookItems)
-
                     db.bookDao.getAllBooks()?.let {
                         allBooksAdapter!!.setItems(
                             bookItems
@@ -95,7 +139,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                             book -> Book(book.id, book.title, book.description, book.publicationYear, book.rating, true)
                     } as MutableList<Book>
 
-                    sortByPublicationYear(favoriteItems)
+                    sortByPublicationYearAscending(favoriteItems)
 
                     favoritesAdapter!!.setItems(
                         favoriteItems
@@ -204,7 +248,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                     dialog.hide()
                     favoriteItems.add(book)
 
-                    sortByPublicationYear(favoriteItems)
+                    sortByPublicationYearAscending(favoriteItems)
 
                     favoritesAdapter!!.setItems(favoriteItems)
                 }
@@ -216,8 +260,14 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         findNavController().navigate(R.id.action_mainFragment_to_bookInfoFragment, bundleOf(ParamsKey.BOOK_ID_KEY to book.id, ParamsKey.USER_ID_KEY to userId))
     }
 
-    private fun sortByPublicationYear(items: MutableList<Book>) {
+    private fun sortByPublicationYearAscending(items: MutableList<Book>) {
         items.sortWith(BookPublicationYearComparator())
+    }
+    
+    private fun sortByPublicationYearDescending(items: MutableList<Book>) {
+        items.sortByDescending { book ->
+            book.publicationYear
+        }
     }
 
     companion object {
