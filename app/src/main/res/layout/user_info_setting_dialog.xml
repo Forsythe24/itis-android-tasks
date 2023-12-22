@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="410dp"
+    android:layout_height="140dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="15dp"
+    android:id="@+id/user_info_setting_dialog">
+    <TextView
+        android:id="@+id/header_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_phone_number_request"
+        android:textSize="20sp"
+        android:padding="8dp"
+        android:layout_gravity="center_horizontal"/>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        app:cardCornerRadius="10dp">
+        <EditText
+            android:id="@+id/user_info_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text|textMultiLine"
+            android:gravity="top"
+            android:background="@color/grey"
+            android:textSize="20sp"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="15dp"
+            />
+    </androidx.cardview.widget.CardView>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/take_user_info_btn"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
+        android:text="@string/set"
+        android:textAllCaps="true"
+        android:textSize="12sp"
+        app:cornerRadius="10dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp" />
+
+
+</androidx.cardview.widget.CardView>

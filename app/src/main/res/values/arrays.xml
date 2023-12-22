@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sort_types_array">
+        <item>publication year (descending)</item>
+        <item>publication year (ascending)</item>
+        <item>rating (descending)</item>
+        <item>rating (ascending)</item>
+    </string-array>
+</resources>
