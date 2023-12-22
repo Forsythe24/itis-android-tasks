@@ -54,4 +54,9 @@
     <string name="delete_account">delete account</string>
     <string name="rate">rate</string>
     <string name="sort_books_by"><b>Sort books by:</b></string>
+    <string name="restore">restore</string>
+    <string name="delayed_user_deletion">delayed user deletion</string>
+    <string name="account_restored_message">Your account has been successfully restored. Welcome back!</string>
+    <string name="account_permanently_deleted_message">You\'ve now permanently deleted your account.</string>
+    <string name="recently_deleted_account_message">You\'ve recently deleted your account. You can now either permanently delete or restore it.</string>
 </resources>

@@ -22,6 +22,7 @@ class BookInfoFragment : Fragment(R.layout.fragment_book_info) {
     private lateinit var userId: String
     private var isRatedBeforeByThisUser: Boolean = false
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

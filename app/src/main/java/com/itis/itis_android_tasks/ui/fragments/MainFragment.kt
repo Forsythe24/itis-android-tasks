@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.button.MaterialButton
 import com.itis.itis_android_tasks.R
@@ -27,7 +26,7 @@ import com.itis.itis_android_tasks.model.Book
 import com.itis.itis_android_tasks.ui.adapter.BookAdapter
 import com.itis.itis_android_tasks.ui.adapter.decorations.SimpleHorizontalDecoration
 import com.itis.itis_android_tasks.ui.adapter.decorations.SimpleVerticalDecoration
-import com.itis.itis_android_tasks.utils.BookPublicationYearComparator
+import com.itis.itis_android_tasks.utils.comparator.BookPublicationYearComparator
 import com.itis.itis_android_tasks.utils.ParamsKey
 import com.itis.itis_android_tasks.utils.getValueInPx
 import kotlinx.coroutines.Dispatchers
@@ -53,7 +52,6 @@ class MainFragment : Fragment(R.layout.fragment_main), AdapterView.OnItemSelecte
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
-        // An item is selected. You can retrieve the selected item using
           when (pos) {
               0 -> {
                   sortByPublicationYearDescending(bookItems)

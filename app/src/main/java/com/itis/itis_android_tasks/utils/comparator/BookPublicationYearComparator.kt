@@ -1,4 +1,4 @@
-package com.itis.itis_android_tasks.utils
+package com.itis.itis_android_tasks.utils.comparator
 
 import com.itis.itis_android_tasks.model.Book
 

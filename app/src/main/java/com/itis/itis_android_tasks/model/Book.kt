@@ -1,7 +1,5 @@
 package com.itis.itis_android_tasks.model
 
-
-
 data class Book (
     val id: String,
     val title: String,

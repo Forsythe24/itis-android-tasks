@@ -7,6 +7,5 @@ class LibraryApp : Application() {
     override fun onCreate() {
         super.onCreate()
         ServiceLocator.initDatabase(ctx = this)
-        println("hi")
     }
 }

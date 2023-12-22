@@ -1,22 +1,15 @@
 package com.itis.itis_android_tasks.ui.fragments
 
 import android.database.sqlite.SQLiteConstraintException
-import android.database.sqlite.SQLiteException
 import android.os.Bundle
-import android.text.PrecomputedText.Params
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.itis.itis_android_tasks.R
-import com.itis.itis_android_tasks.database.entity.BookEntity
-import com.itis.itis_android_tasks.database.entity.UserBookEntity
 import com.itis.itis_android_tasks.database.entity.UserEntity
-import com.itis.itis_android_tasks.database.entity.UserFavoriteBooks
 import com.itis.itis_android_tasks.databinding.FragmentRegistrationBinding
 import com.itis.itis_android_tasks.di.ServiceLocator
 import com.itis.itis_android_tasks.utils.ParamsKey
@@ -53,7 +46,8 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
                     name = nameEt.text.toString(),
                     phoneNumber = phoneNumberEt.text.toString(),
                     email = emailEt.text.toString(),
-                    password = passwordEt.text.toString()
+                    password = passwordEt.text.toString(),
+                    null
                 )
 
                 lifecycleScope.launch(Dispatchers.IO) {

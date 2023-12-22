@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.database.sqlite.SQLiteConstraintException
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,20 +14,26 @@ import android.view.Window
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.workDataOf
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.button.MaterialButton
 import com.itis.itis_android_tasks.R
-import com.itis.itis_android_tasks.database.entity.UserBookEntity
+import com.itis.itis_android_tasks.utils.worker.UserDeletionWorker
 import com.itis.itis_android_tasks.databinding.FragmentProfileBinding
 import com.itis.itis_android_tasks.di.ServiceLocator
-import com.itis.itis_android_tasks.model.Book
 import com.itis.itis_android_tasks.model.User
 import com.itis.itis_android_tasks.utils.ParamsKey
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.time.LocalDate
+import java.util.concurrent.TimeUnit
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
@@ -34,11 +41,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     lateinit var userId: String
     lateinit var user: User
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun init() {
         userId = requireArguments().getString(ParamsKey.USER_ID_KEY).toString()
         with(viewBinding) {
@@ -49,7 +58,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                     val userEntity = ServiceLocator.getDbInstance().userDao.getUserById(userId)!!
 
                     userEntity.let {
-                        user = User(it.id, it.name, it.phoneNumber, it.email, it.password)
+                        user = User(it.id, it.name, it.phoneNumber, it.email, it.password, null)
                     }
                 }
 
@@ -62,11 +71,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
 
             logoutBtn.setOnClickListener {
-                val pref = ServiceLocator.getSharedPreferences()
-
-                pref.edit()
-                    .remove(ParamsKey.IS_AUTHORIZED)
-                    .apply()
+                unauthorize()
 
                 findNavController().navigate(R.id.action_profileFragment_to_authorizationFragment)
             }
@@ -86,6 +91,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     }
     
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun showDeletingAccountDialog() {
         val dialog = Dialog(requireContext())
 
@@ -114,14 +120,21 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             lifecycleScope.launch(Dispatchers.IO) {
 
                 ServiceLocator.getDbInstance().apply {
-                    userDao.deleteUserById(userId)
-                    userBookDao.deleteAllUserFavorites(userId)
+                    userDao.updateUserDeleteDate(userId, LocalDate.now().toString())
 
-                    val pref = ServiceLocator.getSharedPreferences()
+                    val deletionRequest = OneTimeWorkRequestBuilder<UserDeletionWorker>()
+                        .setInputData(
+                            workDataOf(ParamsKey.USER_ID_KEY to userId)
+                        )
+                        .setInitialDelay(7, TimeUnit.DAYS)
+                        .build()
 
-                    pref.edit()
-                        .remove(ParamsKey.IS_AUTHORIZED)
-                        .apply()
+                    WorkManager.getInstance(requireContext()).enqueueUniqueWork(
+                        getString(R.string.delayed_user_deletion),
+                        ExistingWorkPolicy.KEEP,
+                        deletionRequest)
+
+                    unauthorize()
                 }
 
                 withContext(Dispatchers.Main) {
@@ -320,6 +333,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 Toast.makeText(context, getString(R.string.empty_phone_number_warning), Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun unauthorize() {
+        val pref = ServiceLocator.getSharedPreferences()
+
+        pref.edit()
+            .remove(ParamsKey.IS_AUTHORIZED)
+            .apply()
     }
 
     companion object {
